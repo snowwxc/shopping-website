@@ -5,6 +5,7 @@
 - **Styling:** Angular Material
 - **Icons:** Material Icons
 - **State Management:** RxJS with Angular Services
+- **Payment Gateway:** Stripe
 
 ## Coding Standards (The "Vibe")
 - **Component Pattern:** Use Angular components with TypeScript.
@@ -50,6 +51,6 @@
     -   Add items to a cart.
     -   View and update the cart before purchase.
 -   **Checkout:**
-    -   A simple and secure checkout process to enter shipping and payment information.
+    -   A simple and secure checkout process using an existing Stripe plug-in for payments.
 -   **Q&A Feature:**
     -   A form on product pages for customers to ask questions.
