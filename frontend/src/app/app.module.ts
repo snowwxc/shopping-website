@@ -22,6 +22,7 @@ import { QuestionListComponent } from './shared/question-list/question-list.comp
 import { AskQuestionComponent } from './shop/ask-question/ask-question.component';
 import { ProductGalleryComponent } from './shop/product-gallery/product-gallery.component';
 import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
+import { CartComponent } from './shop/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProductDetailComponent } from './shop/product-detail/product-detail.com
     QuestionListComponent,
     AskQuestionComponent,
     ProductGalleryComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
