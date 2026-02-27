@@ -21,6 +21,7 @@
 4. **Iterative Development:** Complete tasks one by one, verifying that everything builds and works correctly at the end of each task.
 5. **Task Completion:** After completing a task, add implementation details to the description of the matching task in the GitHub project and mark the task as done.
 6. **Testing:** After implementing a feature, write unit tests and integration tests to ensure correctness and stability.
+7. **Verification:** After each task is done, all tests (unit and integration) must be run and passed.
 
 ## Persona
 - **Role:** Full-stack developer
