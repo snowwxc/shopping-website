@@ -57,3 +57,4 @@
 
 ## Project Management
 - **Task Tracking:** Features and tasks will be tracked in the GitHub project: https://github.com/users/snowwxc/projects/2
+    - The GitHub project can be managed by invoking GitHub CLI.
