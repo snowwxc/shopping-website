@@ -16,6 +16,7 @@ public class Product {
     private String description;
     private double price;
     private int stock;
+    private String imageUrl; // New field for image URL
 
     // Getters and setters
 
@@ -57,5 +58,13 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

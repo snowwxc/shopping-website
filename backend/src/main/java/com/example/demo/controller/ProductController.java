@@ -42,7 +42,7 @@ public class ProductController {
 
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
-        logger.info("Creating new product: {}", product.getName()); // Log
+        logger.info("Creating new product: {} with image URL: {}", product.getName(), product.getImageUrl()); // Log
         return productRepository.save(product);
     }
 
@@ -56,7 +56,8 @@ public class ProductController {
             product.setDescription(productDetails.getDescription());
             product.setPrice(productDetails.getPrice());
             product.setStock(productDetails.getStock());
-            logger.info("Product with id: {} updated successfully", id); // Log
+            product.setImageUrl(productDetails.getImageUrl()); // Update image URL
+            logger.info("Product with id: {} updated successfully with image URL: {}", id, product.getImageUrl()); // Log
             return ResponseEntity.ok(productRepository.save(product));
         } else {
             logger.warn("Product with id: {} not found for update", id); // Log

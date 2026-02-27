@@ -70,6 +70,7 @@ public class ProductControllerTest {
         Product product = new Product();
         product.setId(1L);
         product.setName("New Product");
+        product.setImageUrl("http://example.com/image.jpg");
 
         when(productRepository.save(any(Product.class))).thenReturn(product);
 
@@ -78,7 +79,8 @@ public class ProductControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(product)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("New Product"));
+                .andExpect(jsonPath("$.name").value("New Product"))
+                .andExpect(jsonPath("$.imageUrl").value("http://example.com/image.jpg"));
     }
 
     @Test
@@ -90,6 +92,7 @@ public class ProductControllerTest {
         Product updatedProduct = new Product();
         updatedProduct.setId(1L);
         updatedProduct.setName("Updated Product");
+        updatedProduct.setImageUrl("http://example.com/updated.jpg");
 
         when(productRepository.findById(1L)).thenReturn(Optional.of(existingProduct));
         when(productRepository.save(any(Product.class))).thenReturn(updatedProduct);
@@ -99,7 +102,8 @@ public class ProductControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updatedProduct)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Updated Product"));
+                .andExpect(jsonPath("$.name").value("Updated Product"))
+                .andExpect(jsonPath("$.imageUrl").value("http://example.com/updated.jpg"));
     }
 
     @Test

@@ -39,6 +39,21 @@
             Stock cannot be negative.
           </mat-error>
         </mat-form-field>
+
+        <!-- Image Upload Section -->
+        <div class="image-upload-section">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput hidden>
+          <button mat-raised-button color="accent" type="button" (click)="fileInput.click()">
+            Upload Image
+          </button>
+          <mat-form-field appearance="fill" style="flex-grow: 1; margin-left: 10px;">
+            <mat-label>Image URL</mat-label>
+            <input matInput formControlName="imageUrl">
+          </mat-form-field>
+        </div>
+        <div *ngIf="productForm.get('imageUrl')?.value" class="image-preview">
+          <img [src]="productForm.get('imageUrl')?.value" alt="Product Image" style="max-width: 200px; max-height: 200px;">
+        </div>
       </form>
     </mat-card-content>
     <mat-card-actions>

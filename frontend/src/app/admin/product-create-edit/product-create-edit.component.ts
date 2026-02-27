@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../core/product.service';
+import { ImageUploadService } from '../../core/image-upload.service'; // Import ImageUploadService
 
 @Component({
   selector: 'app-product-create-edit',
@@ -17,14 +18,16 @@ export class ProductCreateEditComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private imageUploadService: ImageUploadService // Inject ImageUploadService
   ) {
     this.productForm = this.fb.group({
       id: [null],
       name: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
-      stock: ['', [Validators.required, Validators.min(0)]]
+      stock: ['', [Validators.required, Validators.min(0)]],
+      imageUrl: [''] // Add imageUrl form control
     });
   }
 
@@ -33,6 +36,7 @@ export class ProductCreateEditComponent implements OnInit {
   get description() { return this.productForm.get('description'); }
   get price() { return this.productForm.get('price'); }
   get stock() { return this.productForm.get('stock'); }
+  get imageUrl() { return this.productForm.get('imageUrl'); } // New getter
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -45,6 +49,22 @@ export class ProductCreateEditComponent implements OnInit {
         });
       }
     });
+  }
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.imageUploadService.uploadImage(file).subscribe(
+        (imageUrl: string) => {
+          this.productForm.patchValue({ imageUrl: imageUrl });
+          console.log('Image uploaded successfully:', imageUrl);
+        },
+        error => {
+          console.error('Image upload failed:', error);
+          // Handle error, e.g., show a snackbar message
+        }
+      );
+    }
   }
 
   onSubmit(): void {
