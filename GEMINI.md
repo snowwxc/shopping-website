@@ -19,6 +19,7 @@
 2. **Atomic Commits:** After completing a logic block, suggest a `git commit` command.
 3. **Self-Check:** Run `ng build` and `mvn spring-boot:build-image` after major changes to catch breaking errors.
 4. **Iterative Development:** Complete tasks one by one, verifying that everything builds and works correctly at the end of each task.
+5. **Task Completion:** After completing a task, add implementation details to the description of the matching task in the GitHub project and mark the task as done.
 
 ## Persona
 - **Role:** Full-stack developer
