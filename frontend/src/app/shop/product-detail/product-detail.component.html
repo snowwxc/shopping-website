@@ -1,0 +1,25 @@
+<div class="product-detail-container">
+  <mat-card *ngIf="product">
+    <mat-card-header>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ product.description }}</p>
+      <p><strong>Price:</strong> {{ product.price | currency }}</p>
+      <p><strong>Stock:</strong> {{ product.stock }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addToCart()">Add to Cart</button>
+      <button mat-button [routerLink]="['/products', product.id, 'ask']">Ask a Question</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card *ngIf="product" class="questions-card">
+    <mat-card-header>
+      <mat-card-title>Questions & Answers</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-question-list [productId]="product.id"></app-question-list>
+    </mat-card-content>
+  </mat-card>
+</div>

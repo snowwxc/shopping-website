@@ -20,6 +20,8 @@ import { ProductCreateEditComponent } from './admin/product-create-edit/product-
 import { OrderListComponent } from './admin/order-list/order-list.component';
 import { QuestionListComponent } from './shared/question-list/question-list.component';
 import { AskQuestionComponent } from './shop/ask-question/ask-question.component';
+import { ProductGalleryComponent } from './shop/product-gallery/product-gallery.component';
+import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AskQuestionComponent } from './shop/ask-question/ask-question.component
     ProductCreateEditComponent,
     OrderListComponent,
     QuestionListComponent,
-    AskQuestionComponent
+    AskQuestionComponent,
+    ProductGalleryComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
