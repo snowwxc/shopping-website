@@ -10,12 +10,17 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger; // Import Logger
+import org.slf4j.LoggerFactory; // Import LoggerFactory
+
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cart")
 public class CartController {
+
+    private static final Logger logger = LoggerFactory.getLogger(CartController.class); // Logger instance
 
     @Autowired
     private CartRepository cartRepository;
@@ -30,22 +35,32 @@ public class CartController {
 
     @GetMapping
     public ResponseEntity<Cart> getCart(HttpSession session) {
+        logger.info("Fetching cart for session id: {}", session.getId()); // Log
         String sessionId = session.getId();
         Optional<Cart> cart = cartRepository.findBySessionId(sessionId);
-        return cart.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return cart.map(c -> {
+            logger.info("Found cart with {} items for session: {}", c.getItems().size(), sessionId); // Log
+            return ResponseEntity.ok(c);
+        }).orElseGet(() -> {
+            logger.warn("Cart not found for session id: {}", sessionId); // Log
+            return ResponseEntity.notFound().build();
+        });
     }
 
     @PostMapping("/add/{productId}")
     public ResponseEntity<Cart> addProductToCart(@PathVariable Long productId, @RequestParam(defaultValue = "1") int quantity, HttpSession session) {
+        logger.info("Adding product {} with quantity {} to cart for session id: {}", productId, quantity, session.getId()); // Log
         String sessionId = session.getId();
         Cart cart = cartRepository.findBySessionId(sessionId).orElseGet(() -> {
             Cart newCart = new Cart();
             newCart.setSessionId(sessionId);
+            logger.info("Created new cart for session id: {}", sessionId); // Log
             return cartRepository.save(newCart);
         });
 
         Optional<Product> optionalProduct = productRepository.findById(productId);
         if (optionalProduct.isEmpty()) {
+            logger.warn("Product with id: {} not found when adding to cart.", productId); // Log
             return ResponseEntity.badRequest().build();
         }
         Product product = optionalProduct.get();
@@ -58,12 +73,14 @@ public class CartController {
             CartItem cartItem = existingCartItem.get();
             cartItem.setQuantity(cartItem.getQuantity() + quantity);
             cartItemRepository.save(cartItem);
+            logger.info("Updated quantity for product {} in cart {}.", productId, cart.getId()); // Log
         } else {
             CartItem newCartItem = new CartItem();
             newCartItem.setProduct(product);
             newCartItem.setQuantity(quantity);
             newCartItem.setCart(cart);
             cart.getItems().add(newCartItem);
+            logger.info("Added new product {} to cart {}.", productId, cart.getId()); // Log
         }
 
         return ResponseEntity.ok(cartRepository.save(cart));
@@ -71,9 +88,11 @@ public class CartController {
 
     @PutMapping("/update/{productId}")
     public ResponseEntity<Cart> updateCartItemQuantity(@PathVariable Long productId, @RequestParam int quantity, HttpSession session) {
+        logger.info("Updating quantity of product {} to {} in cart for session id: {}", productId, quantity, session.getId()); // Log
         String sessionId = session.getId();
         Optional<Cart> optionalCart = cartRepository.findBySessionId(sessionId);
         if (optionalCart.isEmpty()) {
+            logger.warn("Cart not found for session id: {} when updating quantity.", sessionId); // Log
             return ResponseEntity.notFound().build();
         }
         Cart cart = optionalCart.get();
@@ -83,20 +102,24 @@ public class CartController {
                 .findFirst();
 
         if (existingCartItem.isEmpty()) {
+            logger.warn("Cart item for product {} not found in cart {} when updating quantity.", productId, cart.getId()); // Log
             return ResponseEntity.notFound().build();
         }
         CartItem cartItem = existingCartItem.get();
         cartItem.setQuantity(quantity);
         cartItemRepository.save(cartItem);
+        logger.info("Updated product {} quantity to {} in cart {}.", productId, quantity, cart.getId()); // Log
 
         return ResponseEntity.ok(cartRepository.save(cart));
     }
 
     @DeleteMapping("/remove/{productId}")
     public ResponseEntity<Cart> removeProductFromCart(@PathVariable Long productId, HttpSession session) {
+        logger.info("Removing product {} from cart for session id: {}", productId, session.getId()); // Log
         String sessionId = session.getId();
         Optional<Cart> optionalCart = cartRepository.findBySessionId(sessionId);
         if (optionalCart.isEmpty()) {
+            logger.warn("Cart not found for session id: {} when removing product.", sessionId); // Log
             return ResponseEntity.notFound().build();
         }
         Cart cart = optionalCart.get();
@@ -106,25 +129,30 @@ public class CartController {
                 .findFirst();
 
         if (existingCartItem.isEmpty()) {
+            logger.warn("Cart item for product {} not found in cart {} when removing.", productId, cart.getId()); // Log
             return ResponseEntity.notFound().build();
         }
         CartItem cartItem = existingCartItem.get();
         cart.getItems().remove(cartItem);
         cartItemRepository.delete(cartItem); // Also delete from repository
+        logger.info("Removed product {} from cart {}.", productId, cart.getId()); // Log
 
         return ResponseEntity.ok(cartRepository.save(cart));
     }
 
     @PostMapping("/clear")
     public ResponseEntity<Cart> clearCart(HttpSession session) {
+        logger.info("Clearing cart for session id: {}", session.getId()); // Log
         String sessionId = session.getId();
         Optional<Cart> optionalCart = cartRepository.findBySessionId(sessionId);
         if (optionalCart.isEmpty()) {
+            logger.warn("Cart not found for session id: {} when clearing cart.", sessionId); // Log
             return ResponseEntity.notFound().build();
         }
         Cart cart = optionalCart.get();
         cart.getItems().clear();
         cartItemRepository.deleteAll(cart.getItems()); // Clear items from repository
+        logger.info("Cart {} cleared for session id: {}", cart.getId(), sessionId); // Log
         return ResponseEntity.ok(cartRepository.save(cart));
     }
 }
