@@ -26,3 +26,30 @@
     - Modern best practices.
     - Speed to market.
     - Security.
+
+## Features
+
+### Merchant (Admin)
+-   **Admin Dashboard:** A password-protected area for all merchant activities.
+-   **Product Management:**
+    -   Upload new wood carvings with pictures, descriptions, and prices.
+    -   Update product details and pictures.
+    -   Manage inventory by setting and adjusting stock levels.
+    -   View all listed products.
+-   **Order Management:**
+    -   View a list of incoming customer orders.
+    -   Update order status (e.g., "Processing", "Shipped", "Completed").
+-   **Customer Communication:**
+    -   View and reply to questions submitted by customers.
+
+### Customer
+-   **Product Browsing:**
+    -   A main gallery page to view all wood carvings.
+    -   A detailed page for each product showing images, description, price, and stock availability.
+-   **Shopping Cart:**
+    -   Add items to a cart.
+    -   View and update the cart before purchase.
+-   **Checkout:**
+    -   A simple and secure checkout process to enter shipping and payment information.
+-   **Q&A Feature:**
+    -   A form on product pages for customers to ask questions.
