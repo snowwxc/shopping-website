@@ -60,3 +60,19 @@
 ## Project Management
 - **Task Tracking:** Features and tasks will be tracked in the GitHub project: https://github.com/users/snowwxc/projects/2
     - The GitHub project can be managed by invoking GitHub CLI.
+
+## Major Code Directory
+
+### Backend (`backend/`)
+-   `src/main/java/com/example/woodcarvingwebsite/entity`: JPA entities (Product, Order, User, Question).
+-   `src/main/java/com/example/woodcarvingwebsite/repository`: Spring Data JPA repositories.
+-   `src/main/java/com/example/woodcarvingwebsite/controller`: REST controllers for API endpoints.
+-   `src/main/java/com/example/woodcarvingwebsite/service`: Business logic and service layer.
+-   `src/main/java/com/example/woodcarvingwebsite/security`: Spring Security configuration and related classes.
+
+### Frontend (`frontend/`)
+-   `src/app/core`: Core services, authentication, and global utilities.
+-   `src/app/shared`: Shared components, modules, and directives.
+-   `src/app/auth`: Authentication-related components and services (login, registration).
+-   `src/app/admin`: Components and modules for the merchant dashboard (Product Management, Order Management, Q&A Management).
+-   `src/app/shop`: Components and modules for customer-facing shop (Product Gallery, Product Detail, Shopping Cart, Checkout).
