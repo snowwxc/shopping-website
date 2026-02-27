@@ -1,0 +1,19 @@
+<div class="ask-question-page">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Ask a Question about Product {{ productId }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>Your Question</mat-label>
+          <textarea matInput formControlName="questionText" rows="5"></textarea>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!questionForm.valid">Ask Question</button>
+      <button mat-button (click)="cancel()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

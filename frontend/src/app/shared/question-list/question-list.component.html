@@ -1,0 +1,38 @@
+<div class="question-list-container">
+  <h2>Questions</h2>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let question of questions">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ question.questionText }} ({{ question.askedDate | date:'short' }})
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ question.answerText ? 'Answered' : 'Pending Answer' }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <p>{{ question.questionText }}</p>
+      <div *ngIf="question.answerText">
+        <strong>Answer:</strong> {{ question.answerText }} ({{ question.answeredDate | date:'short' }})
+      </div>
+      <div *ngIf="!question.answerText">
+        <button mat-raised-button color="accent" (click)="toggleAnswerForm(question.id!)">
+          {{ selectedQuestionId === question.id ? 'Cancel' : 'Answer Question' }}
+        </button>
+        <div *ngIf="selectedQuestionId === question.id" class="answer-form">
+          <form [formGroup]="answerForm" (ngSubmit)="submitAnswer(question.id!)">
+            <mat-form-field appearance="fill">
+              <mat-label>Your Answer</mat-label>
+              <textarea matInput formControlName="answerText" rows="3"></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!answerForm.valid">Submit Answer</button>
+          </form>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div *ngIf="questions.length === 0" class="no-questions">
+    No questions yet for this product.
+  </div>
+</div>

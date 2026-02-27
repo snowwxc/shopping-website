@@ -1,0 +1,14 @@
+.ask-question-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Adjust as needed */
+}
+
+mat-card {
+  width: 500px;
+}
+
+mat-form-field {
+  width: 100%;
+}

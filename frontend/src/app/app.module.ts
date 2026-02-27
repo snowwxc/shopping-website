@@ -13,10 +13,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProductListComponent } from './admin/product-list/product-list.component';
 import { ProductCreateEditComponent } from './admin/product-create-edit/product-create-edit.component';
 import { OrderListComponent } from './admin/order-list/order-list.component';
+import { QuestionListComponent } from './shared/question-list/question-list.component';
+import { AskQuestionComponent } from './shop/ask-question/ask-question.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { OrderListComponent } from './admin/order-list/order-list.component';
     DashboardComponent,
     ProductListComponent,
     ProductCreateEditComponent,
-    OrderListComponent
+    OrderListComponent,
+    QuestionListComponent,
+    AskQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ import { OrderListComponent } from './admin/order-list/order-list.component';
     MatTableModule,
     MatIconModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
