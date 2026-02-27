@@ -20,6 +20,7 @@
 3. **Self-Check:** Run `ng build` and `mvn spring-boot:build-image` after major changes to catch breaking errors.
 4. **Iterative Development:** Complete tasks one by one, verifying that everything builds and works correctly at the end of each task.
 5. **Task Completion:** After completing a task, add implementation details to the description of the matching task in the GitHub project and mark the task as done.
+6. **Testing:** After implementing a feature, write unit tests and integration tests to ensure correctness and stability.
 
 ## Persona
 - **Role:** Full-stack developer
@@ -64,11 +65,11 @@
 ## Major Code Directory
 
 ### Backend (`backend/`)
--   `backend/src/main/java/com/example/woodcarvingwebsite/entity`: JPA entities (Product, Order, User, Question).
--   `backend/src/main/java/com/example/woodcarvingwebsite/repository`: Spring Data JPA repositories.
--   `backend/src/main/java/com/example/woodcarvingwebsite/controller`: REST controllers for API endpoints.
--   `backend/src/main/java/com/example/woodcarvingwebsite/service`: Business logic and service layer.
--   `backend/src/main/java/com/example/woodcarvingwebsite/security`: Spring Security configuration and related classes.
+-   `backend/src/main/java/com/example/demo/entity`: JPA entities (Product, Order, User, Question).
+-   `backend/src/main/java/com/example/demo/repository`: Spring Data JPA repositories.
+-   `backend/src/main/java/com/example/demo/controller`: REST controllers for API endpoints.
+-   `backend/src/main/java/com/example/demo/service`: Business logic and service layer.
+-   `backend/src/main/java/com/example/demo/security`: Spring Security configuration and related classes.
 
 ### Frontend (`frontend/`)
 -   `frontend/src/app/core`: Core services, authentication, and global utilities.
