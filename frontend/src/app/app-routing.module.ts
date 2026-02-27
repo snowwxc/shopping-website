@@ -9,6 +9,7 @@ import { AskQuestionComponent } from './shop/ask-question/ask-question.component
 import { ProductGalleryComponent } from './shop/product-gallery/product-gallery.component';
 import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
 import { CartComponent } from './shop/cart/cart.component';
+import { CheckoutComponent } from './shop/checkout/checkout.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'products/:id', component: ProductDetailComponent }, // Specific product detail
   { path: 'products', component: ProductGalleryComponent }, // Main product browsing page
   { path: 'cart', component: CartComponent }, // Shopping Cart page
+  { path: 'checkout', component: CheckoutComponent }, // Checkout page
   { path: '', redirectTo: '/products', pathMatch: 'full' } // Default route
 ];
 

@@ -23,6 +23,7 @@ import { AskQuestionComponent } from './shop/ask-question/ask-question.component
 import { ProductGalleryComponent } from './shop/product-gallery/product-gallery.component';
 import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
 import { CartComponent } from './shop/cart/cart.component';
+import { CheckoutComponent } from './shop/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CartComponent } from './shop/cart/cart.component';
     AskQuestionComponent,
     ProductGalleryComponent,
     ProductDetailComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
