@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Order;
 import com.example.demo.repository.OrderRepository;
+import com.example.demo.service.CheckoutService; // Import CheckoutService
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.boot.test.context.TestConfiguration; // Added import for TestConfiguration
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.http.HttpMethod; // Added import for HttpMethod
 
 
 import java.time.LocalDateTime;
@@ -22,6 +24,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString; // Import anyString
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -36,6 +39,9 @@ public class OrderControllerTest {
 
     @MockBean
     private OrderRepository orderRepository;
+
+    @MockBean
+    private CheckoutService checkoutService; // Mock CheckoutService
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -96,6 +102,37 @@ public class OrderControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    @WithMockUser // Authenticated user can checkout
+    public void testCheckoutSuccess() throws Exception {
+        Order newOrder = new Order();
+        newOrder.setId(1L);
+        newOrder.setCustomerName("Test Customer");
+        newOrder.setCustomerAddress("Test Address");
+
+        when(checkoutService.createOrderFromCart(anyString(), anyString(), anyString())).thenReturn(Optional.of(newOrder));
+
+        mockMvc.perform(post("/api/orders/checkout")
+                        .param("customerName", "Test Customer")
+                        .param("customerAddress", "Test Address")
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L))
+                .andExpect(jsonPath("$.customerName").value("Test Customer"));
+    }
+
+    @Test
+    @WithMockUser
+    public void testCheckoutEmptyCart() throws Exception {
+        when(checkoutService.createOrderFromCart(anyString(), anyString(), anyString())).thenReturn(Optional.empty());
+
+        mockMvc.perform(post("/api/orders/checkout")
+                        .param("customerName", "Test Customer")
+                        .param("customerAddress", "Test Address")
+                        .with(csrf()))
+                .andExpect(status().isBadRequest());
+    }
+
     @TestConfiguration
     @EnableMethodSecurity // Enable method-level security for tests
     static class TestSecurityConfig {
@@ -104,6 +141,7 @@ public class OrderControllerTest {
             http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for test for simplicity
                 .authorizeHttpRequests(authorize -> authorize
+                    .requestMatchers("/api/orders/checkout").permitAll() // Allow unauthenticated access to checkout endpoint
                     .anyRequest().authenticated()
                 );
             return http.build();
