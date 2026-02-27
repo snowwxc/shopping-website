@@ -12,8 +12,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // Import HTTP_INTERCEPTORS
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ErrorInterceptorService } from './core/error-interceptor.service'; // Import ErrorInterceptorService
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProductListComponent } from './admin/product-list/product-list.component';
 import { ProductCreateEditComponent } from './admin/product-create-edit/product-create-edit.component';
@@ -54,7 +55,13 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
     HttpClientModule,
     MatExpansionModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

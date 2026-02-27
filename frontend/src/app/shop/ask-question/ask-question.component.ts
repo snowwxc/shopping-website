@@ -23,6 +23,9 @@ export class AskQuestionComponent implements OnInit {
     });
   }
 
+  // Getter for easy access to form controls
+  get questionText() { return this.questionForm.get('questionText'); }
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');

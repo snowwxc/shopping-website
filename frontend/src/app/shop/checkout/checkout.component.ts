@@ -28,6 +28,10 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  // Getters for easy access to form controls
+  get customerName() { return this.checkoutForm.get('customerName'); }
+  get customerAddress() { return this.checkoutForm.get('customerAddress'); }
+
   ngOnInit(): void {
     // Optionally load cart details to display in checkout summary
     this.cartService.getCart().subscribe(cart => {

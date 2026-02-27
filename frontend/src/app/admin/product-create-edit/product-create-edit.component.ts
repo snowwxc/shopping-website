@@ -28,6 +28,12 @@ export class ProductCreateEditComponent implements OnInit {
     });
   }
 
+  // Getters for easy access to form controls
+  get name() { return this.productForm.get('name'); }
+  get description() { return this.productForm.get('description'); }
+  get price() { return this.productForm.get('price'); }
+  get stock() { return this.productForm.get('stock'); }
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');

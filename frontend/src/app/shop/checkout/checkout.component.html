@@ -9,10 +9,16 @@
         <mat-form-field appearance="fill">
           <mat-label>Full Name</mat-label>
           <input matInput formControlName="customerName" required>
+          <mat-error *ngIf="checkoutForm.controls['customerName'].hasError('required')">
+            Full Name is required.
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Shipping Address</mat-label>
           <textarea matInput formControlName="customerAddress" rows="3" required></textarea>
+          <mat-error *ngIf="checkoutForm.controls['customerAddress'].hasError('required')">
+            Shipping Address is required.
+          </mat-error>
         </mat-form-field>
 
         <!-- Placeholder for Stripe Elements -->
