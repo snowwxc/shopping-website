@@ -54,3 +54,6 @@
     -   A simple and secure checkout process using an existing Stripe plug-in for payments.
 -   **Q&A Feature:**
     -   A form on product pages for customers to ask questions.
+
+## Project Management
+- **Task Tracking:** Features and tasks will be tracked in the GitHub project: https://github.com/users/snowwxc/projects/2
