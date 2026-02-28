@@ -14,8 +14,8 @@ import { AboutArtistComponent } from './shop/about-artist/about-artist.component
 import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'about', component: AboutArtistComponent }, // Add about route
+  { path: 'auth/login', component: LoginComponent },
+  { path: 'about', component: AboutArtistComponent },
   { 
     path: 'admin/dashboard', 
 
@@ -47,7 +47,6 @@ const routes: Routes = [
   { path: 'shop/products', component: ProductGalleryComponent },
   { path: 'shop/cart', component: CartComponent },
   { path: 'shop/checkout', component: CheckoutComponent },
-  { path: 'login', redirectTo: '/auth/login', pathMatch: 'full' },
   { path: 'products', redirectTo: '/shop/products', pathMatch: 'full' },
   { path: 'cart', redirectTo: '/shop/cart', pathMatch: 'full' },
   { path: 'checkout', redirectTo: '/shop/checkout', pathMatch: 'full' },

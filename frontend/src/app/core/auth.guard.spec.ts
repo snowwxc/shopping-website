@@ -50,7 +50,7 @@ describe('AuthGuard', () => {
   it('should redirect to login when not logged in', (done) => {
     isLoggedInSubject.next(false);
     const result = guard.canActivate({} as any, {} as any);
-    const urlTree = router.createUrlTree(['/login']);
+    const urlTree = router.createUrlTree(['/auth/login']);
     
     if (result instanceof Observable) {
       result.subscribe(val => {
