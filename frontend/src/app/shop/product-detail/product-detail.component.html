@@ -1,5 +1,9 @@
 <div class="product-detail-page">
   <div class="product-detail-container" *ngIf="product">
+    <div class="breadcrumb">
+      <a routerLink="/shop/products">Gallery</a> / <span>{{ product.name }}</span>
+    </div>
+
     <div class="product-layout">
       <!-- Left Column: Image -->
       <div class="product-image-section">
@@ -12,10 +16,6 @@
 
       <!-- Right Column: Details -->
       <div class="product-info-section">
-        <div class="breadcrumb">
-          <a routerLink="/">Home</a> / <span>{{ product.name }}</span>
-        </div>
-        
         <h1 class="product-title">{{ product.name }}</h1>
         <div class="price-tag">{{ product.price | currency }}</div>
         
@@ -34,7 +34,7 @@
         <div class="action-buttons">
           <button mat-raised-button color="primary" class="add-to-cart-btn" (click)="addToCart()" [disabled]="product.stock === 0">
             <mat-icon>shopping_cart</mat-icon>
-            Add to Collection
+            Add to Cart
           </button>
           <button mat-stroked-button color="accent" class="ask-btn" [routerLink]="['/shop/product', product.id, 'ask']">
             <mat-icon>question_answer</mat-icon>

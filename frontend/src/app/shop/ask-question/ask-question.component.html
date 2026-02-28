@@ -1,22 +1,40 @@
 <div class="ask-question-page">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Ask a Question about Product {{ productId }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="fill">
-          <mat-label>Your Question</mat-label>
-          <textarea matInput formControlName="questionText" rows="5"></textarea>
-          <mat-error *ngIf="questionForm.controls['questionText'].hasError('required')">
-            Question is required.
-          </mat-error>
-        </mat-form-field>
-        <div class="form-actions">
-          <button mat-raised-button color="primary" type="submit" [disabled]="!questionForm.valid">Ask Question</button>
-          <button mat-button type="button" (click)="cancel()">Cancel</button>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+  <div class="ask-container">
+    <div class="breadcrumb" *ngIf="product">
+      <a routerLink="/shop/products">Gallery</a> / 
+      <a [routerLink]="['/shop/product', product.id]">{{ product.name }}</a> / 
+      <span>Inquiry</span>
+    </div>
+
+    <mat-card class="inquiry-card">
+      <mat-card-header>
+        <mat-card-title>Ask About this Piece</mat-card-title>
+        <mat-card-subtitle *ngIf="product">{{ product.name }}</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+          <p class="instruction">Please leave your question below. Our artisan will review it and provide an answer as soon as possible.</p>
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Your Question</mat-label>
+            <textarea matInput formControlName="questionText" rows="6" placeholder="e.g., Is this item food safe? Can you customize the wood type?"></textarea>
+            <mat-error *ngIf="questionForm.controls['questionText'].hasError('required')">
+              Please enter your question.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="form-actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!questionForm.valid" class="submit-btn">
+              Send Inquiry
+            </button>
+            <button mat-button type="button" (click)="cancel()" class="cancel-btn">
+              <mat-icon>arrow_back</mat-icon>
+              Go Back
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

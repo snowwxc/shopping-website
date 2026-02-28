@@ -1,12 +1,35 @@
 <mat-toolbar color="primary" class="main-header">
-  <span routerLink="/shop/products">Great Lakes Woodcraft</span>
+  <span routerLink="/shop/products" class="brand-name">Great Lakes Woodcraft</span>
   <span class="spacer"></span>
-  <button mat-icon-button routerLink="/shop/cart">
-    <mat-icon>shopping_cart</mat-icon>
-  </button>
-  <button mat-icon-button routerLink="/auth/login">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+  
+  <div class="nav-links">
+    <button mat-button routerLink="/shop/products">Gallery</button>
+    
+    <button mat-icon-button routerLink="/shop/cart" matTooltip="Your Collection">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+
+    <!-- Admin Links (Only if Logged In) -->
+    <ng-container *ngIf="isLoggedIn$ | async">
+      <button mat-button routerLink="/admin/dashboard" class="admin-link">
+        <mat-icon>dashboard</mat-icon>
+        Admin
+      </button>
+    </ng-container>
+
+    <!-- Auth Actions -->
+    <ng-container *ngIf="isLoggedIn$ | async; else loginBtn">
+      <button mat-icon-button (click)="logout()" matTooltip="Logout">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </ng-container>
+    
+    <ng-template #loginBtn>
+      <button mat-icon-button routerLink="/auth/login" matTooltip="Login">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </ng-template>
+  </div>
 </mat-toolbar>
 
 <main class="content">

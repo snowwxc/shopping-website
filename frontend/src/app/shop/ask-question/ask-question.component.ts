@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionService, Question } from '../../core/question.service';
+import { ProductService, Product } from '../../core/product.service';
 
 @Component({
   selector: 'app-ask-question',
@@ -11,19 +12,20 @@ import { QuestionService, Question } from '../../core/question.service';
 export class AskQuestionComponent implements OnInit {
   questionForm: FormGroup;
   productId: number | null = null;
+  product: Product | undefined;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private productService: ProductService
   ) {
     this.questionForm = this.fb.group({
       questionText: ['', Validators.required]
     });
   }
 
-  // Getter for easy access to form controls
   get questionText() { return this.questionForm.get('questionText'); }
 
   ngOnInit(): void {
@@ -31,9 +33,11 @@ export class AskQuestionComponent implements OnInit {
       const id = params.get('id');
       if (id) {
         this.productId = +id;
+        this.productService.getProduct(this.productId).subscribe(product => {
+          this.product = product;
+        });
       } else {
-        // Handle case where no product ID is provided (e.g., redirect to home)
-        this.router.navigate(['/']);
+        this.router.navigate(['/shop/products']);
       }
     });
   }
@@ -45,13 +49,16 @@ export class AskQuestionComponent implements OnInit {
         questionText: this.questionForm.value.questionText
       };
       this.questionService.askQuestion(newQuestion).subscribe(() => {
-        console.log('Question asked successfully!');
-        this.router.navigate(['/products', this.productId]); // Navigate back to product detail page
+        this.router.navigate(['/shop/product', this.productId]);
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/products', this.productId]); // Navigate back to product detail page
+    if (this.productId) {
+      this.router.navigate(['/shop/product', this.productId]);
+    } else {
+      this.router.navigate(['/shop/products']);
+    }
   }
 }
