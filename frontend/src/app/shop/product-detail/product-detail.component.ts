@@ -47,11 +47,7 @@ export class ProductDetailComponent implements OnInit {
 
       this.cartService.addProductToCart(this.product.id).subscribe(
         cart => {
-          this.snackBar.open('Added to collection', 'View Cart', {
-            duration: 3000
-          }).onAction().subscribe(() => {
-            this.router.navigate(['/shop/cart']);
-          });
+          // No success message as requested
         },
         error => {
           this.snackBar.open('Could not add to cart. Please check stock.', 'Close', { duration: 3000 });
