@@ -5,7 +5,8 @@
   <div class="nav-links">
     <button mat-button routerLink="/shop/products">Gallery</button>
     
-    <button mat-icon-button routerLink="/shop/cart" matTooltip="Your Collection">
+    <button mat-icon-button routerLink="/shop/cart" matTooltip="Your Collection" 
+            [matBadge]="cartItemCount$ | async" [matBadgeHidden]="(cartItemCount$ | async) === 0" matBadgeColor="accent">
       <mat-icon>shopping_cart</mat-icon>
     </button>
 
@@ -35,3 +36,30 @@
 <main class="content">
   <router-outlet></router-outlet>
 </main>
+
+<footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-column workshop-info">
+      <h3>The Workshop</h3>
+      <p>Handcrafting heirloom wood carvings in the heart of the Great Lakes. Each piece is carved from sustainably sourced local timber, telling a unique story of the Michigan forest.</p>
+    </div>
+
+    <div class="footer-column explorer-links">
+      <h3>Explorer</h3>
+      <ul>
+        <li><a routerLink="/shop/products">The Gallery</a></li>
+        <li><a routerLink="/shop/cart">Your Collection</a></li>
+        <li><a routerLink="/auth/login">Artisan Login</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column pride-section">
+      <h3>Great Lakes Pride</h3>
+      <div class="mi-badge">
+        <mat-icon>forest</mat-icon>
+        <span>Proudly Crafted in Michigan</span>
+      </div>
+      <p class="copyright">&copy; 2026 Great Lakes Woodcraft. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

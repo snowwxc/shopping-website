@@ -28,12 +28,117 @@
 }
 
 .content {
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 250px);
   background-color: var(--color-background);
+}
+
+/* Footer Styles */
+.main-footer {
+  background-color: var(--color-deep-walnut);
+  color: var(--color-maple-cream);
+  padding: 60px 0 30px 0;
+  margin-top: 80px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+}
+
+.footer-column h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-maple-cream);
+  font-size: 1.4rem;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.footer-column h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--color-sage-green);
+}
+
+.workshop-info p {
+  line-height: 1.7;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  max-width: 450px;
+}
+
+.explorer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.explorer-links li {
+  margin-bottom: 12px;
+}
+
+.explorer-links a {
+  color: var(--color-maple-cream);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.explorer-links a:hover {
+  opacity: 1;
+  color: var(--color-sage-green);
+}
+
+.mi-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--color-sage-green);
+}
+
+.mi-badge mat-icon {
+  font-size: 24px;
+}
+
+.mi-badge span {
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-top: 40px;
 }
 
 /* Tooltip style */
 ::ng-deep .mat-tooltip {
   background-color: var(--color-deep-walnut) !important;
   font-size: 0.8rem !important;
+}
+
+/* Natural Badge Positioning */
+::ng-deep .mat-badge-content {
+  background-color: var(--color-sage-green) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  width: 18px !important;
+  height: 18px !important;
+  line-height: 18px !important;
+}
+
+::ng-deep .mat-badge-overlap.mat-badge-after .mat-badge-content {
+  right: -4px !important;
+  top: -4px !important;
 }

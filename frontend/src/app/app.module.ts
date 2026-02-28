@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatBadgeModule } from '@angular/material/badge';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -56,6 +57,7 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
     MatIconModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    MatBadgeModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatExpansionModule
