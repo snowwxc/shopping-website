@@ -27,11 +27,12 @@
           <!-- A Stripe Element will be inserted here. -->
           <p>Stripe payment form will go here.</p>
         </div>
+
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!checkoutForm.valid">Place Order</button>
+          <button mat-button type="button" routerLink="/cart">Back to Cart</button>
+        </div>
       </form>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!checkoutForm.valid">Place Order</button>
-      <button mat-button routerLink="/cart">Back to Cart</button>
-    </mat-card-actions>
   </mat-card>
 </div>

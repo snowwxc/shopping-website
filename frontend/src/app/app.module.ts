@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar'; // Import MatToolbarModule
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // Import HTTP_INTERCEPTORS
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -51,6 +52,7 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
     MatButtonModule,
     MatTableModule,
     MatIconModule,
+    MatToolbarModule, // Add MatToolbarModule
     ReactiveFormsModule,
     HttpClientModule,
     MatExpansionModule

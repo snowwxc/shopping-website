@@ -3,6 +3,7 @@ import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs'; // Import BehaviorSubject
 import { ProductDetailComponent } from './product-detail.component';
 import { Product, ProductService } from '../../core/product.service';
+import { CartService, Cart } from '../../core/cart.service'; // Import CartService
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CurrencyPipe } from '@angular/common';
@@ -16,16 +17,21 @@ describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
   let fixture: ComponentFixture<ProductDetailComponent>;
   let productService: jasmine.SpyObj<ProductService>;
+  let cartService: jasmine.SpyObj<CartService>;
   let router: Router;
   let paramMapSubject: BehaviorSubject<any>; // Declare BehaviorSubject
 
   const mockProduct: Product = { id: 1, name: 'Test Product', description: 'desc', price: 10, stock: 100 };
+  const mockCart: Cart = { items: [] };
 
   beforeEach(async () => {
     paramMapSubject = new BehaviorSubject(convertToParamMap({ id: '1' })); // Initialize BehaviorSubject
 
     const productServiceSpy = jasmine.createSpyObj('ProductService', ['getProduct']);
     productServiceSpy.getProduct.and.returnValue(of(mockProduct));
+
+    const cartServiceSpy = jasmine.createSpyObj('CartService', ['addProductToCart']);
+    cartServiceSpy.addProductToCart.and.returnValue(of(mockCart));
 
     await TestBed.configureTestingModule({
       declarations: [
@@ -42,6 +48,7 @@ describe('ProductDetailComponent', () => {
       ],
       providers: [
         { provide: ProductService, useValue: productServiceSpy },
+        { provide: CartService, useValue: cartServiceSpy },
         {
           provide: ActivatedRoute,
           useValue: {
@@ -60,6 +67,7 @@ describe('ProductDetailComponent', () => {
     fixture = TestBed.createComponent(ProductDetailComponent);
     component = fixture.componentInstance;
     productService = TestBed.inject(ProductService) as jasmine.SpyObj<ProductService>;
+    cartService = TestBed.inject(CartService) as jasmine.SpyObj<CartService>;
     router = TestBed.inject(Router);
     fixture.detectChanges();
   });
@@ -80,9 +88,8 @@ describe('ProductDetailComponent', () => {
   });
 
   it('should call addToCart', () => {
-    spyOn(console, 'log');
     component.product = mockProduct;
     component.addToCart();
-    expect(console.log).toHaveBeenCalledWith('Add to cart clicked for product:', mockProduct.name);
+    expect(cartService.addProductToCart).toHaveBeenCalledWith(mockProduct.id!);
   });
 });

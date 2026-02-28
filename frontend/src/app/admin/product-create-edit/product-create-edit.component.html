@@ -54,11 +54,11 @@
         <div *ngIf="productForm.get('imageUrl')?.value" class="image-preview">
           <img [src]="productForm.get('imageUrl')?.value" alt="Product Image" style="max-width: 200px; max-height: 200px;">
         </div>
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid">Save</button>
+          <button mat-button type="button" routerLink="/admin/dashboard">Cancel</button>
+        </div>
       </form>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid">Save</button>
-      <button mat-button routerLink="/admin/dashboard">Cancel</button>
-    </mat-card-actions>
   </mat-card>
 </div>

@@ -1,16 +1,19 @@
 <div class="product-gallery">
-  <mat-card *ngFor="let product of products">
+  <mat-card *ngFor="let product of products" class="product-card">
+    <img mat-card-image [src]="product.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image+Available'" [alt]="product.name" class="product-image">
     <mat-card-header>
       <mat-card-title>{{ product.name }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>{{ product.description }}</p>
+      <p class="product-description">{{ product.description }}</p>
       <p><strong>Price:</strong> {{ product.price | currency }}</p>
-      <p><strong>Stock:</strong> {{ product.stock }}</p>
+      <p [ngClass]="{'out-of-stock': product.stock === 0}">
+        <strong>Stock:</strong> {{ product.stock > 0 ? product.stock : 'Out of Stock' }}
+      </p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" [routerLink]="['/products', product.id]">View Details</button>
-      <button mat-button>Add to Cart</button>
+      <button mat-button color="accent" [disabled]="product.stock === 0">Add to Cart</button>
     </mat-card-actions>
   </mat-card>
 </div>

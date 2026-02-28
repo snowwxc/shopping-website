@@ -4,6 +4,7 @@ import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { ProductCreateEditComponent } from './product-create-edit.component';
 import { ProductService, Product } from '../../core/product.service';
+import { ImageUploadService } from '../../core/image-upload.service'; // Import ImageUploadService
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -14,15 +15,19 @@ describe('ProductCreateEditComponent', () => {
   let component: ProductCreateEditComponent;
   let fixture: ComponentFixture<ProductCreateEditComponent>;
   let productService: jasmine.SpyObj<ProductService>;
+  let imageUploadService: jasmine.SpyObj<ImageUploadService>; // Declare imageUploadService spy
   let router: Router;
 
-  const mockProduct: Product = { id: 1, name: 'Test Product', description: 'desc', price: 10, stock: 100 };
+  const mockProduct: Product = { id: 1, name: 'Test Product', description: 'desc', price: 10, stock: 100, imageUrl: 'test.jpg' };
 
   beforeEach(async () => {
     const productServiceSpy = jasmine.createSpyObj('ProductService', ['getProduct', 'createProduct', 'updateProduct']);
     productServiceSpy.getProduct.and.returnValue(of(mockProduct));
     productServiceSpy.createProduct.and.returnValue(of(mockProduct));
     productServiceSpy.updateProduct.and.returnValue(of(mockProduct));
+
+    const imageUploadServiceSpy = jasmine.createSpyObj('ImageUploadService', ['uploadImage']);
+    imageUploadServiceSpy.uploadImage.and.returnValue(of('test-image-url.jpg'));
 
     await TestBed.configureTestingModule({
       declarations: [ ProductCreateEditComponent ],
@@ -36,6 +41,7 @@ describe('ProductCreateEditComponent', () => {
       ],
       providers: [
         { provide: ProductService, useValue: productServiceSpy },
+        { provide: ImageUploadService, useValue: imageUploadServiceSpy }, // Provide mocked ImageUploadService
         {
           provide: ActivatedRoute,
           useValue: {
@@ -49,6 +55,7 @@ describe('ProductCreateEditComponent', () => {
     fixture = TestBed.createComponent(ProductCreateEditComponent);
     component = fixture.componentInstance;
     productService = TestBed.inject(ProductService) as jasmine.SpyObj<ProductService>;
+    imageUploadService = TestBed.inject(ImageUploadService) as jasmine.SpyObj<ImageUploadService>;
     router = TestBed.inject(Router);
     spyOn(router, 'navigate');
   });

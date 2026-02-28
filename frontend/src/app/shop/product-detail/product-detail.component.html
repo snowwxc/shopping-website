@@ -1,25 +1,44 @@
-<div class="product-detail-container">
-  <mat-card *ngIf="product">
-    <mat-card-header>
-      <mat-card-title>{{ product.name }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{ product.description }}</p>
-      <p><strong>Price:</strong> {{ product.price | currency }}</p>
-      <p><strong>Stock:</strong> {{ product.stock }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="addToCart()">Add to Cart</button>
-      <button mat-button [routerLink]="['/products', product.id, 'ask']">Ask a Question</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="product-detail-page">
+  <div class="product-detail-container" *ngIf="product">
+    <div class="product-main">
+      <mat-card class="product-card">
+        <div class="product-image-container">
+          <img [src]="product.imageUrl || 'https://via.placeholder.com/600x400?text=No+Image+Available'" [alt]="product.name" class="product-image">
+        </div>
+        <div class="product-info">
+          <mat-card-header>
+            <mat-card-title>{{ product.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="description">{{ product.description }}</p>
+            <div class="price-stock">
+              <span class="price">{{ product.price | currency }}</span>
+              <span class="stock" [ngClass]="{'out-of-stock': product.stock === 0}">
+                {{ product.stock > 0 ? (product.stock + ' in stock') : 'Out of Stock' }}
+              </span>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" size="large" (click)="addToCart()" [disabled]="product.stock === 0">Add to Cart</button>
+            <button mat-stroked-button color="accent" [routerLink]="['/products', product.id, 'ask']">Ask a Question</button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
 
-  <mat-card *ngIf="product" class="questions-card">
-    <mat-card-header>
-      <mat-card-title>Questions & Answers</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <app-question-list [productId]="product.id"></app-question-list>
-    </mat-card-content>
-  </mat-card>
+      <mat-card class="questions-card">
+        <mat-card-header>
+          <mat-card-title>Questions & Answers</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <app-question-list [productId]="product.id"></app-question-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div *ngIf="!product" class="loading-container">
+    <mat-card>
+      <mat-card-content>Loading product details...</mat-card-content>
+    </mat-card>
+  </div>
 </div>
