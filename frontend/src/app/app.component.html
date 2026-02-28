@@ -4,7 +4,6 @@
   
   <div class="nav-links">
     <button mat-button routerLink="/shop/products">Gallery</button>
-    <button mat-button routerLink="/about">About the Artist</button>
     
     <button mat-icon-button routerLink="/shop/cart" matTooltip="Your Collection" 
             [matBadge]="cartItemCount$ | async" [matBadgeHidden]="(cartItemCount$ | async) === 0" matBadgeColor="accent">
@@ -49,6 +48,7 @@
       <h3>Explorer</h3>
       <ul>
         <li><a routerLink="/shop/products">The Gallery</a></li>
+        <li><a routerLink="/about">The Artist</a></li>
         <li><a routerLink="/shop/cart">Your Collection</a></li>
         <li><a routerLink="/auth/login">Artisan Login</a></li>
       </ul>
