@@ -11,11 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar'; // Import MatToolbarModule
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // Import HTTP_INTERCEPTORS
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { ErrorInterceptorService } from './core/error-interceptor.service'; // Import ErrorInterceptorService
+import { ErrorInterceptorService } from './core/error-interceptor.service';
+import { AuthInterceptorService } from './core/auth-interceptor.service';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProductListComponent } from './admin/product-list/product-list.component';
 import { ProductCreateEditComponent } from './admin/product-create-edit/product-create-edit.component';
@@ -52,7 +53,7 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
     MatButtonModule,
     MatTableModule,
     MatIconModule,
-    MatToolbarModule, // Add MatToolbarModule
+    MatToolbarModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatExpansionModule
@@ -61,6 +62,11 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
       multi: true
     }
   ],

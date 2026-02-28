@@ -10,20 +10,41 @@ import { ProductGalleryComponent } from './shop/product-gallery/product-gallery.
 import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'admin/dashboard', component: DashboardComponent },
-  { path: 'admin/products/new', component: ProductCreateEditComponent },
-  { path: 'admin/products/:id/edit', component: ProductCreateEditComponent },
-  { path: 'admin/orders', component: OrderListComponent },
-  { path: 'admin/questions', component: QuestionListComponent },
+  { 
+    path: 'admin/dashboard', 
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'admin/products/new', 
+    component: ProductCreateEditComponent,
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'admin/products/:id/edit', 
+    component: ProductCreateEditComponent,
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'admin/orders', 
+    component: OrderListComponent,
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'admin/questions', 
+    component: QuestionListComponent,
+    canActivate: [AuthGuard]
+  },
   { path: 'products/:id/ask', component: AskQuestionComponent },
-  { path: 'products/:id', component: ProductDetailComponent }, // Specific product detail
-  { path: 'products', component: ProductGalleryComponent }, // Main product browsing page
-  { path: 'cart', component: CartComponent }, // Shopping Cart page
-  { path: 'checkout', component: CheckoutComponent }, // Checkout page
-  { path: '', redirectTo: '/products', pathMatch: 'full' } // Default route
+  { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'products', component: ProductGalleryComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
+  { path: '', redirectTo: '/products', pathMatch: 'full' }
 ];
 
 @NgModule({
