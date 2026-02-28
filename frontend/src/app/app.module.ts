@@ -32,6 +32,7 @@ import { ProductDetailComponent } from './shop/product-detail/product-detail.com
 import { CartComponent } from './shop/cart/cart.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { AboutArtistComponent } from './shop/about-artist/about-artist.component';
+import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component'; // Import AdminQuestionsComponent
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AboutArtistComponent } from './shop/about-artist/about-artist.component
     ProductDetailComponent,
     CartComponent,
     CheckoutComponent,
-    AboutArtistComponent
+    AboutArtistComponent,
+    AdminQuestionsComponent // Declare AdminQuestionsComponent
   ],
   imports: [
     BrowserModule,

@@ -10,18 +10,20 @@ import { ProductGalleryComponent } from './shop/product-gallery/product-gallery.
 import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
-import { AboutArtistComponent } from './shop/about-artist/about-artist.component'; // Import AboutArtistComponent
+import { AboutArtistComponent } from './shop/about-artist/about-artist.component';
+import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component'; // Import AdminQuestionsComponent
 import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   { path: 'auth/login', component: LoginComponent },
   { path: 'about', component: AboutArtistComponent },
+...
   { 
-    path: 'admin/dashboard', 
-
-    component: DashboardComponent,
+    path: 'admin/questions', 
+    component: AdminQuestionsComponent,
     canActivate: [AuthGuard]
   },
+
   { 
     path: 'admin/products/new', 
     component: ProductCreateEditComponent,
