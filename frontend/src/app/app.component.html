@@ -50,7 +50,8 @@
         <li><a routerLink="/shop/products">The Gallery</a></li>
         <li><a routerLink="/about">The Artist</a></li>
         <li><a routerLink="/shop/cart">Your Collection</a></li>
-        <li><a routerLink="/auth/login">Artisan Login</a></li>
+        <li *ngIf="!(isLoggedIn$ | async)"><a routerLink="/auth/login">Artisan Login</a></li>
+        <li *ngIf="isLoggedIn$ | async"><a routerLink="/admin/dashboard">Artisan Dashboard</a></li>
       </ul>
     </div>
 
