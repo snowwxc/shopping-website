@@ -1,4 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles - Michigan-Inspired Woodcraft Aesthetic */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  /* Michigan-Inspired Palette */
+  --color-maple-cream: #FFF9F0; /* Sugar Maple light wood */
+  --color-white-oak: #8B6B61;   /* Warm White Oak brown */
+  --color-deep-walnut: #4E342E; /* Dark accents */
+  --color-sage-green: #689F38;  /* Forest/Nature accent */
+  --color-background: #F5F5F5;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #2D2D2D;
+  --color-text-secondary: #666666;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', "Helvetica Neue", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-deep-walnut);
+}
+
+/* Material Component Overrides */
+.mat-toolbar.mat-primary {
+  background-color: var(--color-deep-walnut);
+  color: var(--color-maple-cream);
+}
+
+.mat-raised-button.mat-primary {
+  background-color: var(--color-white-oak);
+}
+
+.mat-card {
+  background-color: var(--color-maple-cream);
+  border-radius: 12px !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+}
+
+.mat-card-title {
+  font-family: 'Playfair Display', serif !important;
+  color: var(--color-deep-walnut) !important;
+}

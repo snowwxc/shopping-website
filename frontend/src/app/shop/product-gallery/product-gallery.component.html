@@ -1,19 +1,32 @@
-<div class="product-gallery">
-  <mat-card *ngFor="let product of products" class="product-card">
-    <img mat-card-image [src]="product.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image+Available'" [alt]="product.name" class="product-image">
-    <mat-card-header>
-      <mat-card-title>{{ product.name }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p class="product-description">{{ product.description }}</p>
-      <p><strong>Price:</strong> {{ product.price | currency }}</p>
-      <p [ngClass]="{'out-of-stock': product.stock === 0}">
-        <strong>Stock:</strong> {{ product.stock > 0 ? product.stock : 'Out of Stock' }}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" [routerLink]="['/products', product.id]">View Details</button>
-      <button mat-button color="accent" [disabled]="product.stock === 0">Add to Cart</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="gallery-container">
+  <div class="gallery-header">
+    <h2>Artisanal Carvings from the North</h2>
+  </div>
+
+  <div class="gallery-grid">
+    <mat-card *ngFor="let product of displayedProducts" class="product-card">
+      <div class="card-image-wrapper">
+        <img *ngIf="product.imageUrl" [src]="product.imageUrl" [alt]="product.name" class="product-image">
+        <div *ngIf="!product.imageUrl" class="product-image-placeholder">
+          <mat-icon>photo</mat-icon>
+        </div>
+        <div class="tag" *ngIf="product.stock > 0">In Stock</div>
+        <div class="tag out-of-stock" *ngIf="product.stock === 0">Out of Stock</div>
+      </div>
+      
+      <mat-card-content class="card-content">
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <div class="product-price">{{ product.price | currency }}</div>
+        <p class="product-description">{{ product.description | slice:0:100 }}{{ product.description.length > 100 ? '...' : '' }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" [routerLink]="['/shop/product', product.id]">View Details</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="load-more-container" *ngIf="hasMore">
+    <button mat-raised-button class="load-more-btn" (click)="loadMore()">Show More Products</button>
+  </div>
 </div>

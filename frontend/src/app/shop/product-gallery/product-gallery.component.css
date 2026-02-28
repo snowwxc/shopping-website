@@ -1,54 +1,107 @@
-.product-gallery {
+.gallery-container {
+  max-width: 1200px;
+  margin: var(--spacing-xl) auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.gallery-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-xl);
+  text-align: left;
+}
+
+.gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  padding: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
 }
 
 .product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15) !important;
+}
+
+.card-image-wrapper {
+  position: relative;
+  height: 220px;
+  background-color: #E0E0E0;
+  overflow: hidden;
 }
 
 .product-image {
-  height: 200px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-bottom: 1px solid #eee;
 }
 
-mat-card-header {
-  padding-bottom: 0;
+.product-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
 }
 
-mat-card-content {
+.product-image-placeholder mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+}
+
+.tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--color-sage-green);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.tag.out-of-stock {
+  background-color: var(--color-text-secondary);
+}
+
+.card-content {
+  padding: var(--spacing-md) !important;
   flex-grow: 1;
-  padding-top: 16px;
+}
+
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-sage-green);
+  margin-bottom: var(--spacing-sm);
 }
 
 .product-description {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  height: 60px;
-  margin-bottom: 16px;
-  color: #666;
-}
-
-.out-of-stock {
-  color: #f44336;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
 }
 
 mat-card-actions {
-  padding: 16px;
-  border-top: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
+  padding: var(--spacing-md) !important;
+}
+
+.load-more-container {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.load-more-btn {
+  background-color: var(--color-deep-walnut) !important;
+  color: var(--color-maple-cream) !important;
+  padding: 8px 45px !important;
+  font-size: 1rem;
 }

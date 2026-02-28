@@ -1,6 +1,43 @@
-<h1>Admin Dashboard</h1>
-<nav>
-  <button mat-raised-button color="accent" routerLink="/admin/orders">View Orders</button>
-  <button mat-raised-button color="primary" routerLink="/admin/products/new">Add New Product</button>
-</nav>
-<app-product-list></app-product-list>
+<div class="admin-page">
+  <div class="admin-container">
+    <div class="dashboard-header">
+      <div class="header-text">
+        <h1>Master Artisan Dashboard</h1>
+        <p>Overview of your workshop's digital gallery and collection.</p>
+      </div>
+      
+      <div class="quick-actions">
+        <button mat-stroked-button color="accent" class="action-btn" routerLink="/admin/orders">
+          <mat-icon>shopping_bag</mat-icon>
+          Manage Orders
+        </button>
+        <button mat-raised-button color="primary" class="action-btn primary-action" routerLink="/admin/products/new">
+          <mat-icon>add</mat-icon>
+          Add New Piece
+        </button>
+      </div>
+    </div>
+
+    <div class="dashboard-stats">
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <div mat-card-avatar><mat-icon>inventory</mat-icon></div>
+          <mat-card-title>Inventory</mat-card-title>
+          <mat-card-subtitle>Active Collection</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <div mat-card-avatar><mat-icon>receipt</mat-icon></div>
+          <mat-card-title>Recent Orders</mat-card-title>
+          <mat-card-subtitle>Customer Requests</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <div class="inventory-section">
+      <app-product-list></app-product-list>
+    </div>
+  </div>
+</div>

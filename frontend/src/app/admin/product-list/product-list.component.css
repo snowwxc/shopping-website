@@ -1,0 +1,132 @@
+.admin-page {
+  padding: var(--spacing-xl) 0;
+  min-height: 85vh;
+  background-color: var(--color-background);
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.header-text h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.header-text p {
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+.add-btn {
+  background-color: var(--color-deep-walnut) !important;
+  color: var(--color-maple-cream) !important;
+  padding: 8px 24px !important;
+}
+
+/* Table Card */
+.table-card {
+  padding: 0 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+  background-color: white !important;
+}
+
+.data-table {
+  width: 100%;
+}
+
+th.mat-header-cell {
+  background-color: #f8f9fa;
+  color: var(--color-deep-walnut);
+  font-weight: 700;
+  padding: 16px !important;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+td.mat-cell {
+  padding: 16px !important;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-name {
+  font-weight: 500;
+  color: var(--color-deep-walnut);
+  font-size: 1rem;
+}
+
+.desc-cell {
+  color: var(--color-text-secondary);
+  max-width: 300px;
+}
+
+.price-cell {
+  font-weight: 700;
+  color: var(--color-sage-green);
+}
+
+.stock-badge {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.stock-badge.low-stock {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.stock-badge.out-of-stock {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.edit-btn {
+  color: var(--color-white-oak) !important;
+}
+
+.view-btn {
+  color: var(--color-text-secondary) !important;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 80px 0;
+}
+
+.empty-state mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: #ccc;
+  margin-bottom: var(--spacing-md);
+}
+
+.empty-state p {
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .desc-cell {
+    display: none;
+  }
+}

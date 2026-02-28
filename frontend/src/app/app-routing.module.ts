@@ -13,7 +13,7 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'auth/login', component: LoginComponent },
   { 
     path: 'admin/dashboard', 
     component: DashboardComponent,
@@ -39,12 +39,16 @@ const routes: Routes = [
     component: QuestionListComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'products/:id/ask', component: AskQuestionComponent },
-  { path: 'products/:id', component: ProductDetailComponent },
-  { path: 'products', component: ProductGalleryComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent },
-  { path: '', redirectTo: '/products', pathMatch: 'full' }
+  { path: 'shop/product/:id/ask', component: AskQuestionComponent },
+  { path: 'shop/product/:id', component: ProductDetailComponent },
+  { path: 'shop/products', component: ProductGalleryComponent },
+  { path: 'shop/cart', component: CartComponent },
+  { path: 'shop/checkout', component: CheckoutComponent },
+  { path: 'login', redirectTo: '/auth/login', pathMatch: 'full' },
+  { path: 'products', redirectTo: '/shop/products', pathMatch: 'full' },
+  { path: 'cart', redirectTo: '/shop/cart', pathMatch: 'full' },
+  { path: 'checkout', redirectTo: '/shop/checkout', pathMatch: 'full' },
+  { path: '', redirectTo: '/shop/products', pathMatch: 'full' }
 ];
 
 @NgModule({

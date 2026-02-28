@@ -1,16 +1,14 @@
-<mat-toolbar color="primary">
-  <span routerLink="/" style="cursor: pointer;">Wood Carving Shop</span>
+<mat-toolbar color="primary" class="main-header">
+  <span routerLink="/shop/products">Great Lakes Woodcraft</span>
   <span class="spacer"></span>
-  <button mat-button routerLink="/products">Shop</button>
-  <button mat-button routerLink="/cart">
+  <button mat-icon-button routerLink="/shop/cart">
     <mat-icon>shopping_cart</mat-icon>
-    Cart
   </button>
-  <button mat-button routerLink="/admin/dashboard" *ngIf="isLoggedIn$ | async">Admin</button>
-  <button mat-button routerLink="/login" *ngIf="!(isLoggedIn$ | async)">Login</button>
-  <button mat-button (click)="logout()" *ngIf="isLoggedIn$ | async">Logout</button>
+  <button mat-icon-button routerLink="/auth/login">
+    <mat-icon>account_circle</mat-icon>
+  </button>
 </mat-toolbar>
 
-<div class="content-container">
+<main class="content">
   <router-outlet></router-outlet>
-</div>
+</main>

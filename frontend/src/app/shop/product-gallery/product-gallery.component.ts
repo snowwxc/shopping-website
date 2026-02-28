@@ -7,13 +7,30 @@ import { Product, ProductService } from '../../core/product.service';
   styleUrls: ['./product-gallery.component.css']
 })
 export class ProductGalleryComponent implements OnInit {
-  products: Product[] = [];
+  allProducts: Product[] = [];
+  displayedProducts: Product[] = [];
+  pageSize = 6;
+  currentPage = 1;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
-      this.products = products;
+      this.allProducts = products;
+      this.updateDisplayedProducts();
     });
+  }
+
+  loadMore(): void {
+    this.currentPage++;
+    this.updateDisplayedProducts();
+  }
+
+  updateDisplayedProducts(): void {
+    this.displayedProducts = this.allProducts.slice(0, this.currentPage * this.pageSize);
+  }
+
+  get hasMore(): boolean {
+    return this.displayedProducts.length < this.allProducts.length;
   }
 }
