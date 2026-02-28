@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product, ProductService } from '../../core/product.service';
-import { CartService } from '../../core/cart.service'; // Import CartService
+import { CartService } from '../../core/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,7 +16,8 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    private cartService: CartService // Inject CartService
+    private cartService: CartService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -33,14 +35,26 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(): void {
     if (this.product && this.product.id) {
+      const currentInCart = this.cartService.getCartItemQuantity(this.product.id);
+      if (currentInCart >= (this.product.stock || 0)) {
+        this.snackBar.open(`Cannot add more. only ${this.product.stock} available.`, 'Close', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+        return;
+      }
+
       this.cartService.addProductToCart(this.product.id).subscribe(
         cart => {
-          console.log('Product added to cart:', cart);
-          // Optionally, show a success message or update cart display
+          this.snackBar.open('Added to collection', 'View Cart', {
+            duration: 3000
+          }).onAction().subscribe(() => {
+            this.router.navigate(['/shop/cart']);
+          });
         },
         error => {
-          console.error('Error adding product to cart:', error);
-          // Handle error
+          this.snackBar.open('Could not add to cart. Please check stock.', 'Close', { duration: 3000 });
         }
       );
     }

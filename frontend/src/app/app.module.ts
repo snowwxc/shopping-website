@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -29,7 +31,7 @@ import { ProductGalleryComponent } from './shop/product-gallery/product-gallery.
 import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
-import { AboutArtistComponent } from './shop/about-artist/about-artist.component'; // Import AboutArtistComponent
+import { AboutArtistComponent } from './shop/about-artist/about-artist.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { AboutArtistComponent } from './shop/about-artist/about-artist.component
     ProductDetailComponent,
     CartComponent,
     CheckoutComponent,
-    AboutArtistComponent // Declare AboutArtistComponent
+    AboutArtistComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,8 @@ import { AboutArtistComponent } from './shop/about-artist/about-artist.component
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
+    MatSnackBarModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatExpansionModule

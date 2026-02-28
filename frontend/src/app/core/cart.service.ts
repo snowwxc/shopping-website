@@ -65,4 +65,11 @@ export class CartService {
       tap(cart => this.cartSubject.next(cart))
     );
   }
+
+  getCartItemQuantity(productId: number): number {
+    const cart = this.cartSubject.value;
+    if (!cart) return 0;
+    const item = cart.items.find(i => i.product.id === productId);
+    return item ? item.quantity : 0;
+  }
 }

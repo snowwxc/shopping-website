@@ -6,6 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CartComponent', () => {
@@ -34,6 +35,7 @@ describe('CartComponent', () => {
         MatIconModule,
         MatButtonModule,
         MatCardModule,
+        MatSnackBarModule,
         RouterTestingModule
       ],
       providers: [
@@ -59,7 +61,7 @@ describe('CartComponent', () => {
   });
 
   it('should update quantity', () => {
-    component.updateQuantity(1, 3);
+    component.updateQuantity(1, 3, 10);
     expect(cartService.updateCartItemQuantity).toHaveBeenCalledWith(1, 3);
     expect(cartService.getCart).toHaveBeenCalledTimes(2); // Initial + after update
   });

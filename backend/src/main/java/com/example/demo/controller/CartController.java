@@ -69,6 +69,12 @@ public class CartController {
                 .filter(item -> item.getProduct().getId().equals(productId))
                 .findFirst();
 
+        int currentQuantity = existingCartItem.map(CartItem::getQuantity).orElse(0);
+        if (currentQuantity + quantity > product.getStock()) {
+            logger.warn("Insufficient stock for product id {}. Requested: {}, Available: {}", productId, currentQuantity + quantity, product.getStock());
+            return ResponseEntity.badRequest().build();
+        }
+
         if (existingCartItem.isPresent()) {
             CartItem cartItem = existingCartItem.get();
             cartItem.setQuantity(cartItem.getQuantity() + quantity);
@@ -105,7 +111,13 @@ public class CartController {
             logger.warn("Cart item for product {} not found in cart {} when updating quantity.", productId, cart.getId()); // Log
             return ResponseEntity.notFound().build();
         }
+        
         CartItem cartItem = existingCartItem.get();
+        if (quantity > cartItem.getProduct().getStock()) {
+            logger.warn("Insufficient stock for product id {}. Requested: {}, Available: {}", productId, quantity, cartItem.getProduct().getStock());
+            return ResponseEntity.badRequest().build();
+        }
+
         cartItem.setQuantity(quantity);
         cartItemRepository.save(cartItem);
         logger.info("Updated product {} quantity to {} in cart {}.", productId, quantity, cart.getId()); // Log

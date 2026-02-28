@@ -7,6 +7,7 @@ import { CartService } from '../../core/cart.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CurrencyPipe } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -30,10 +31,11 @@ describe('ProductDetailComponent', () => {
     const productServiceSpy = jasmine.createSpyObj('ProductService', ['getProduct']);
     productServiceSpy.getProduct.and.returnValue(of(mockProduct));
 
-    const cartServiceSpy = jasmine.createSpyObj('CartService', ['addProductToCart'], {
+    const cartServiceSpy = jasmine.createSpyObj('CartService', ['addProductToCart', 'getCartItemQuantity'], {
       cartItemCount$: of(0)
     });
     cartServiceSpy.addProductToCart.and.returnValue(of({ items: [] }));
+    cartServiceSpy.getCartItemQuantity.and.returnValue(0);
 
     await TestBed.configureTestingModule({
       declarations: [
@@ -44,6 +46,7 @@ describe('ProductDetailComponent', () => {
         MatCardModule,
         MatButtonModule,
         MatIconModule,
+        MatSnackBarModule,
         RouterTestingModule,
         HttpClientTestingModule,
         MatExpansionModule,
