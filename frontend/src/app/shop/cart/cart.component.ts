@@ -11,6 +11,9 @@ export class CartComponent implements OnInit {
   displayedColumns: string[] = ['productName', 'quantity', 'price', 'total', 'actions'];
   dataSource = new MatTableDataSource<CartItem>();
   cartTotal: number = 0;
+  taxRate: number = 0.06; // 6% Michigan Sales Tax
+  taxAmount: number = 0;
+  grandTotal: number = 0;
 
   constructor(private cartService: CartService) { }
 
@@ -21,16 +24,18 @@ export class CartComponent implements OnInit {
   loadCart(): void {
     this.cartService.getCart().subscribe(cart => {
       this.dataSource.data = cart.items || [];
-      this.calculateCartTotal();
+      this.calculateTotals();
     }, error => {
       console.error('Error loading cart:', error);
-      this.dataSource.data = []; // Clear cart on error or if not found
-      this.calculateCartTotal();
+      this.dataSource.data = [];
+      this.calculateTotals();
     });
   }
 
-  calculateCartTotal(): void {
+  calculateTotals(): void {
     this.cartTotal = this.dataSource.data.reduce((acc, item) => acc + (item.quantity * item.product.price), 0);
+    this.taxAmount = this.cartTotal * this.taxRate;
+    this.grandTotal = this.cartTotal + this.taxAmount;
   }
 
   updateQuantity(productId: number, quantity: number): void {

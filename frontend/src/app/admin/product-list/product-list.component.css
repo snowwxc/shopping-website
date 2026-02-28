@@ -51,9 +51,9 @@ th.mat-header-cell {
   color: var(--color-deep-walnut);
   font-weight: 700;
   padding: 16px !important;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.75px;
 }
 
 td.mat-cell {
@@ -62,28 +62,31 @@ td.mat-cell {
 }
 
 .product-name {
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-deep-walnut);
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .desc-cell {
   color: var(--color-text-secondary);
   max-width: 300px;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .price-cell {
   font-weight: 700;
   color: var(--color-sage-green);
+  font-size: 1.05rem;
 }
 
 .stock-badge {
   background-color: #e8f5e9;
   color: #2e7d32;
-  padding: 4px 12px;
+  padding: 6px 14px;
   border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   white-space: nowrap;
 }
 

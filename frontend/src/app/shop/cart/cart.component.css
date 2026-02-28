@@ -72,7 +72,7 @@
 }
 
 .item-name {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin: 0 0 4px 0;
   cursor: pointer;
   color: var(--color-deep-walnut);
@@ -85,6 +85,7 @@
 .item-price {
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-md);
+  font-size: 1.05rem;
 }
 
 .item-actions {
@@ -152,9 +153,10 @@
 
 .total-label {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: var(--color-text-secondary);
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .total-value {
@@ -200,6 +202,12 @@
 .grand-total {
   color: var(--color-sage-green);
   font-size: 1.5rem;
+}
+
+.free-shipping {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 0.9rem;
 }
 
 .summary-actions {

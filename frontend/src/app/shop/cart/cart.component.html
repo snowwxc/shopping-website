@@ -57,13 +57,17 @@
               <span>{{ cartTotal | currency }}</span>
             </div>
             <div class="summary-row">
+              <span>Sales Tax (6%)</span>
+              <span>{{ taxAmount | currency }}</span>
+            </div>
+            <div class="summary-row">
               <span>Shipping</span>
-              <span class="free-shipping">Calculated at checkout</span>
+              <span class="free-shipping">FREE</span>
             </div>
             <div class="divider"></div>
             <div class="summary-row total-row">
-              <span>Estimated Total</span>
-              <span class="grand-total">{{ cartTotal | currency }}</span>
+              <span>Order Total</span>
+              <span class="grand-total">{{ grandTotal | currency }}</span>
             </div>
           </mat-card-content>
           

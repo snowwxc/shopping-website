@@ -63,7 +63,7 @@
   color: white;
   padding: 4px 12px;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: bold;
 }
 
@@ -77,16 +77,16 @@
 }
 
 .product-price {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--color-sage-green);
   margin-bottom: var(--spacing-sm);
 }
 
 .product-description {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--color-text-secondary);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 mat-card-actions {
