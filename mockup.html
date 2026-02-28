@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wood Carving Website Mockup - Michigan Vibe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            /* Michigan-Inspired Palette */
+            --color-maple-cream: #FFF9F0; /* Sugar Maple light wood */
+            --color-white-oak: #8B6B61;   /* Warm White Oak brown */
+            --color-deep-walnut: #4E342E; /* Dark accents */
+            --color-sage-green: #689F38;  /* Forest/Nature accent */
+            --color-text: #2D2D2D;
+            --spacing-md: 20px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #F5F5F5;
+            color: var(--color-text);
+        }
+
+        /* Mock Toolbar */
+        header {
+            background-color: var(--color-deep-walnut);
+            color: var(--color-maple-cream);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-icons span {
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        /* Gallery Layout */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Product Card Mockup */
+        .card {
+            background-color: var(--color-maple-cream);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(139, 107, 97, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 220px;
+            background-color: #E0E0E0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            position: relative;
+        }
+
+        .card-image::after {
+            content: "Product Image Placeholder";
+            font-style: italic;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--color-deep-walnut);
+            margin: 0 0 10px 0;
+        }
+
+        .card-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-sage-green);
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 12px 30px;
+            background-color: var(--color-white-oak);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--color-deep-walnut);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--color-sage-green);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Great Lakes Woodcraft</h1>
+        <div class="nav-icons">
+            <span class="material-icons">search</span>
+            <span class="material-icons">shopping_cart</span>
+            <span class="material-icons">menu</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; color: var(--color-deep-walnut);">
+            Artisanal Carvings from the North
+        </h2>
+
+        <div class="gallery-grid">
+            <!-- Product 1 -->
+            <div class="card">
+                <div class="card-image">
+                    <div class="tag">In Stock</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Hand-Carved Black Bear</h3>
+                    <div class="card-price">$145.00</div>
+                    <p class="card-description">Finely detailed Michigan black bear, carved from a single block of White Oak. Hand-polished with natural beeswax.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Maple Leaf Bowl</h3>
+                    <div class="card-price">$85.00</div>
+                    <p class="card-description">Turned from local Sugar Maple. The natural grain patterns evoke the rolling hills of the Traverse City area.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="card">
+                <div class="card-image">
+                    <div class="tag">Limited Edition</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lighthouse Relief</h3>
+                    <div class="card-price">$210.00</div>
+                    <p class="card-description">A deep-relief carving of a Michigan shoreline lighthouse. Captures the rugged spirit of Lake Superior.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Walnut Coaster Set</h3>
+                    <div class="card-price">$45.00</div>
+                    <p class="card-description">Set of 4 coasters carved from premium Michigan Black Walnut. Heat-resistant and naturally durable.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="card">
+                <div class="card-image">
+                    <div class="tag">New Arrival</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Pine Forest Mural</h3>
+                    <div class="card-price">$350.00</div>
+                    <p class="card-description">A large-scale wall mural depicting a dense pine forest. Perfect for a cozy cabin or rustic home office.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Cedar Birdhouse</h3>
+                    <div class="card-price">$65.00</div>
+                    <p class="card-description">Hand-built from aromatic Michigan Red Cedar. Designed to attract local songbirds while adding charm to your garden.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div style="text-align: center; margin-top: 60px;">
+            <button id="loadMoreBtn" class="btn" style="background-color: var(--color-deep-walnut); padding: 15px 45px; cursor: pointer; border: none;">Show More Products</button>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { title: "Cedar Canoe Paddle", price: "$120.00", desc: "A decorative paddle carved from Michigan Red Cedar. Hand-painted with traditional Great Lakes motifs.", tag: "Limited" },
+            { title: "Walnut Fruit Bowl", price: "$95.00", desc: "Deep, rich Walnut bowl with a live-edge finish. Each piece is unique and sustainably sourced.", tag: "" },
+            { title: "Basswood Relief", price: "$180.00", desc: "Intricate relief carving of a woodland scene. Basswood's fine grain allows for extreme detail.", tag: "Artisanal" }
+        ];
+
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            const grid = document.querySelector('.gallery-grid');
+            
+            products.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        ${p.tag ? `<div class="tag">${p.tag}</div>` : ''}
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${p.title}</h3>
+                        <div class="card-price">${p.price}</div>
+                        <p class="card-description">${p.desc}</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Optional: Hide button if no more products (for demo)
+            // this.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>

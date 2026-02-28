@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
-import { ProductListComponent } from '../product-list/product-list.component'; // Import ProductListComponent
-import { MatTableModule } from '@angular/material/table'; // Needed for ProductListComponent
-import { RouterTestingModule } from '@angular/router/testing'; // Needed for routerLink
-import { HttpClientTestingModule } from '@angular/common/http/testing'; // Import HttpClientTestingModule
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ProductListComponent } from '../product-list/product-list.component';
+import { MatTableModule } from '@angular/material/table';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -11,14 +13,16 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      declarations: [ 
         DashboardComponent,
-        ProductListComponent // Declare ProductListComponent
+        ProductListComponent
       ],
       imports: [
-        MatTableModule, // Add MatTableModule
-        RouterTestingModule, // Add RouterTestingModule
-        HttpClientTestingModule // Add HttpClientTestingModule
+        MatCardModule,
+        MatIconModule,
+        RouterTestingModule,
+        MatTableModule,
+        HttpClientTestingModule
       ]
     })
     .compileComponents();

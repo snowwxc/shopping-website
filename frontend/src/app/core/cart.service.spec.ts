@@ -13,6 +13,11 @@ describe('CartService', () => {
     });
     service = TestBed.inject(CartService);
     httpMock = TestBed.inject(HttpTestingController);
+
+    // Handle the initial refreshCart() call from constructor
+    const req = httpMock.expectOne('/api/cart');
+    expect(req.request.method).toBe('GET');
+    req.flush({ items: [] });
   });
 
   afterEach(() => {

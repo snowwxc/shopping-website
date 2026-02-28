@@ -5,6 +5,7 @@ import { Product, ProductService } from '../../core/product.service';
 import { of } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { CurrencyPipe } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -28,6 +29,7 @@ describe('ProductGalleryComponent', () => {
         HttpClientTestingModule,
         MatCardModule,
         MatButtonModule,
+        MatIconModule,
         RouterTestingModule
       ],
       providers: [
@@ -49,7 +51,7 @@ describe('ProductGalleryComponent', () => {
 
   it('should fetch products on init', () => {
     expect(productService.getProducts).toHaveBeenCalled();
-    expect(component.products).toEqual(mockProducts);
+    expect(component.allProducts).toEqual(mockProducts);
   });
 
   it('should display product cards', () => {

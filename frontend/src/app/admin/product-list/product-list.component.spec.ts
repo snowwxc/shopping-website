@@ -3,6 +3,9 @@ import { of } from 'rxjs';
 import { ProductListComponent } from './product-list.component';
 import { Product, ProductService } from '../../core/product.service';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProductListComponent', () => {
@@ -11,17 +14,24 @@ describe('ProductListComponent', () => {
   let productService: jasmine.SpyObj<ProductService>;
 
   const mockProducts: Product[] = [
-    { id: 1, name: 'Test Product 1', description: 'desc 1', price: 10, stock: 100 },
-    { id: 2, name: 'Test Product 2', description: 'desc 2', price: 20, stock: 200 }
+    { id: 1, name: 'Product 1', description: 'desc1', price: 10, stock: 100 },
+    { id: 2, name: 'Product 2', description: 'desc2', price: 20, stock: 50 }
   ];
 
   beforeEach(async () => {
-    const productServiceSpy = jasmine.createSpyObj('ProductService', ['getProducts']);
+    const productServiceSpy = jasmine.createSpyObj('ProductService', ['getProducts', 'deleteProduct']);
     productServiceSpy.getProducts.and.returnValue(of(mockProducts));
+    productServiceSpy.deleteProduct.and.returnValue(of(undefined));
 
     await TestBed.configureTestingModule({
       declarations: [ ProductListComponent ],
-      imports: [ MatTableModule, RouterTestingModule ],
+      imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        RouterTestingModule
+      ],
       providers: [
         { provide: ProductService, useValue: productServiceSpy }
       ]
