@@ -4,26 +4,23 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProductCreateEditComponent } from './admin/product-create-edit/product-create-edit.component';
 import { OrderListComponent } from './admin/order-list/order-list.component';
-import { QuestionListComponent } from './shared/question-list/question-list.component';
 import { AskQuestionComponent } from './shop/ask-question/ask-question.component';
 import { ProductGalleryComponent } from './shop/product-gallery/product-gallery.component';
 import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { AboutArtistComponent } from './shop/about-artist/about-artist.component';
-import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component'; // Import AdminQuestionsComponent
+import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component';
 import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   { path: 'auth/login', component: LoginComponent },
   { path: 'about', component: AboutArtistComponent },
-...
   { 
-    path: 'admin/questions', 
-    component: AdminQuestionsComponent,
+    path: 'admin/dashboard', 
+    component: DashboardComponent,
     canActivate: [AuthGuard]
   },
-
   { 
     path: 'admin/products/new', 
     component: ProductCreateEditComponent,
@@ -41,7 +38,7 @@ const routes: Routes = [
   },
   { 
     path: 'admin/questions', 
-    component: QuestionListComponent,
+    component: AdminQuestionsComponent,
     canActivate: [AuthGuard]
   },
   { path: 'shop/product/:id/ask', component: AskQuestionComponent },
